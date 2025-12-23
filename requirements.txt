@@ -1,0 +1,73 @@
+# Android Security Toolkit v2.0 - Requirements
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+adb-shell==0.4.3
+pure-python-adb==0.3.0.dev0
+Click==8.1.7
+colorama==0.4.6
+tqdm==4.66.1
+
+# Web framework for API server
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+
+# Background task processing
+celery==5.3.4
+redis==5.0.1
+
+# Database support
+SQLAlchemy==2.0.23
+sqlite3
+
+# Testing and development
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-asyncio==0.21.1
+bandit==1.7.5
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Configuration and utilities
+PyYAML==6.0.1
+requests==2.31.0
+urllib3==2.1.0
+
+# Security and cryptography
+cryptography==41.0.7
+pycryptodome==3.19.0
+hashlib
+hmac
+
+# File and data processing
+zipfile36
+xml.etree.ElementTree
+json
+csv
+
+# Network utilities
+socket
+subprocess
+psutil==5.9.6
+
+# System utilities
+os
+sys
+pathlib
+time
+threading
+concurrent.futures
+
+# Data structures and algorithms
+itertools
+collections
+re
+base64
+binascii
+
+# Optional dependencies for enhanced features
+# frida-tools==12.3.0  # Uncomment for Frida integration
+# jadx==1.4.7         # Uncomment for APK decompilation
+# pwntools==4.11.0    # Uncomment for advanced exploitation
