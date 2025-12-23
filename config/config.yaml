@@ -1,0 +1,189 @@
+# Android Security Toolkit v2.0 - Configuration File
+# Copy this file to customize your settings
+
+# ADB Configuration
+adb:
+  timeout: 30
+  retry_attempts: 3
+  ports:
+    - 5555
+    - 5556
+    - 5557
+    - 5558
+    - 5559
+    - 5560
+  
+  # ADB connection settings
+  connection_timeout: 10
+  command_timeout: 30
+  
+  # USB vendor IDs for device detection
+  usb_vendor_ids:
+    - "18d1"  # Google
+    - "04e8"  # Samsung
+    - "0bb4"  # HTC
+    - "12d1"  # Huawei
+    - "19d2"  # ZTE
+    - "1004"  # LG
+    - "04dd"  # Sharp
+    - "0fce"  # Sony Ericsson
+    - "091e"  # Garmin-Asus
+    - "18d1"  # Asus
+
+# Scanning Configuration
+scanning:
+  thread_count: 8
+  timeout: 60
+  max_devices: 100
+  
+  # Network scanning
+  network_scan_timeout: 5
+  port_scan_timeout: 2
+  
+  # CVE database
+  cve_update_interval: 86400  # 24 hours
+  
+  # Risk scoring
+  risk_weights:
+    critical: 10
+    high: 7
+    medium: 4
+    low: 2
+    info: 1
+
+# Cracking Configuration
+cracking:
+  max_threads: 16
+  timeout: 3600  # 1 hour
+  
+  # Wordlists
+  wordlists:
+    - wordlists/android_pins.txt
+    - wordlists/passwords_top1000.txt
+    - wordlists/common_patterns.txt
+    - wordlists/english_words.txt
+    - wordlists/seasons_years.txt
+  
+  # Hashcat integration
+  hashcat_path: "/usr/bin/hashcat"
+  hashcat_options:
+    - "--force"
+    - "--potfile-disable"
+  
+  # Attack speeds (attempts per second)
+  speeds:
+    pin_4: 500000
+    pin_6: 300000
+    pin_8: 100000
+    pattern: 200000
+    password: 50000
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  timeout: 300
+  
+  # Security
+  jwt_secret: "change_this_secret_key"
+  jwt_expiration: 3600  # 1 hour
+  
+  # Rate limiting
+  rate_limit:
+    requests_per_minute: 60
+    burst_limit: 10
+  
+  # CORS
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:8080"
+
+# Monitoring Configuration
+monitoring:
+  device_check_interval: 5
+  activity_check_interval: 10
+  max_log_entries: 1000
+  
+  # Alert thresholds
+  thresholds:
+    cpu_usage: 90
+    memory_usage: 85
+    disk_io_rate: 100  # MB/s
+    network_connections: 1000
+  
+  # Webhook settings
+  webhook_timeout: 10
+  webhook_retries: 3
+
+# Logging Configuration
+logging:
+  level: INFO
+  file: loot/android_security_toolkit.log
+  max_size: 100MB
+  backup_count: 5
+  
+  # Log formats
+  formats:
+    console: "[%(asctime)s] %(name)s - %(levelname)s - %(message)s"
+    file: "[%(asctime)s] %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s"
+  
+  # Audit logging
+  audit_log: loot/audit.log
+  audit_max_size: 500MB
+  audit_backup_count: 10
+
+# Database Configuration
+database:
+  type: sqlite
+  path: loot/android_security_toolkit.db
+  
+  # Connection settings
+  timeout: 30
+  isolation_level: None
+  
+  # Cache settings
+  cache_size: 10000
+
+# Frida Configuration
+frida:
+  enabled: true
+  timeout: 60
+  
+  # Scripts
+  script_directory: loot/frida_scripts
+  
+  # Common hooks
+  hooks:
+    - ssl_pinning
+    - root_detection
+    - crypto_operations
+    - network_calls
+    - file_operations
+
+# Legal and Compliance
+legal:
+  # Audit requirements
+  require_consent: true
+  log_all_actions: true
+  
+  # Data retention
+  retention_days: 90
+  
+  # Privacy
+  anonymize_data: false
+  encrypt_storage: false
+
+# Performance Tuning
+performance:
+  # Memory limits
+  max_memory_mb: 2048
+  
+  # Thread pools
+  io_thread_pool_size: 10
+  cpu_thread_pool_size: 4
+  
+  # Caching
+  cache_enabled: true
+  cache_size_mb: 100
+  cache_ttl: 3600  # 1 hour
